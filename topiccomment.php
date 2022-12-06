@@ -49,7 +49,7 @@
 
         while ($answers = $getAnswersTopic->fetch()) {
 
-            $nombreUsuario2 = userName($answers['usuario_ID'], $mibd);
+            $nombreUsuario2 = $info->userName($answers['usuario_ID'], $mibd);
         ?>
             <div class="container py-2 px-5 bg-light">
                 <div class="card">

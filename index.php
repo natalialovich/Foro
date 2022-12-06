@@ -28,8 +28,8 @@ include 'actions/connection.php';
 
             while ($feedDisplay = $feed->fetch()) {
 
-                $nombreUsuario = userName($feedDisplay['usuario_ID'], $mibd);
-                $categ = categName($feedDisplay['categ_ID'], $mibd);
+                $nombreUsuario = $info->userName($feedDisplay['usuario_ID'], $mibd);
+                $categ = $info->categName($feedDisplay['categ_ID'], $mibd);
         ?>
                 <div class="container py-3 px-5 bg-light">
                     <div class="card">
@@ -51,16 +51,14 @@ include 'actions/connection.php';
 
             $feedCateg = $mibd->prepare('SELECT * FROM tema WHERE categ_ID = ? ORDER BY categ_ID DESC');
             $feedCateg->execute(array($_GET['categ_id']));
-            $getCateg = $mibd->prepare('SELECT * FROM categoria WHERE categ_ID = ?');
-            $getCateg->execute(array($_GET['categ_id']));
-            $categ = $getCateg->fetch();
+            $categ = $info->categName($_GET['categ_id'], $mibd);
 
             echo '<div class="container p-2 my-3 bg-success text-white rounded">
             <h2 class="display-3 text-center">' . $categ['nombre_cat'] . '</h2></div>';
 
             while ($feedDisplayCat = $feedCateg->fetch()) {
 
-                $nombreUsuario = userName($feedDisplayCat['usuario_ID'], $mibd);
+                $nombreUsuario = $info->userName($feedDisplayCat['usuario_ID'], $mibd);
             ?>
                 <div class="container py-3 px-5 bg-light">
                     <div class="card">

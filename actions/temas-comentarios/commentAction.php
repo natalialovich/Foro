@@ -22,8 +22,8 @@ if(isset($_GET['temaID']) AND !empty($_GET['temaID'])){
         $title = $topicinfo['titulo'];
         $content = $topicinfo['contenido'];
         //Recojo los valores de la tabla de categoría y usuario
-        $nombreUsuario = userName($userID, $mibd);
-        $categ = categName($categID, $mibd);
+        $nombreUsuario = $info->userName($userID, $mibd);
+        $categ = $info->categName($categID, $mibd);
 
     } else {
 
