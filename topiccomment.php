@@ -23,8 +23,9 @@
                             <?php echo $content . '<span class=" h6 d-flex flex-row justify-content-end text-info pt-3"> Publicado el  ' . $dateTopic . ' </span>'; ?></p>
                         </p>
                         <?php
+                        //Si el usuario ha iniciado sesión se muestra un botón de comentar
                         if (isset($_SESSION['usuario']['nombre'])) {
-
+                            //si es el autor se muestra un botón de modificar 
                             if ($userID === $_SESSION['usuario']['usuario_ID']) {
                         ?>
                                 <a href="<?php echo 'editTopic.php?temaID=' . $topicID; ?>" class="btn btn-warning">Modificar la pregunta</a>
@@ -44,6 +45,7 @@
         </div>
 
         <?php
+        //Sección de comentarios
         $getAnswersTopic = $mibd->prepare('SELECT * FROM comentarios WHERE tema_ID = ? ORDER BY coment_ID DESC');
         $getAnswersTopic->execute(array($topicID));
 
